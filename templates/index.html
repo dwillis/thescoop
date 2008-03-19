@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+
+<link rel="alternate" type="application/rss+xml" title="RSS feed" href="/docs/feeds/latest/" />
+
+{% endblock %}
+
+{% block content %}
+
+<h2>Recently Added Stories</h2>
+
+{% if recent_stories %}
+   <ul>
+        {% for story in recent_stories %}
+            <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url }}">{{ story.source }}</a>) published on <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recent stories are available.</p>
+    {% endif %}
+
+<h2>Browse the database by: </h2>
+
+<ul>
+	<li><a href="/docs/withdb/">Online Database or Graphic</a></li>
+	<li><a href="/docs/byline/">Byline</a></li>
+	<li><a href="/docs/source/">Source</a></li>
+	<li><a href="/docs/topic/">Topic</a></li>
+	<li><a href="/docs/datatype/">Type of Data</a></li>
+	<li><a href="/docs/date/">Date</a></li>
+	<li><a href="/docs/state/">State</a></li>
+	<li><a href="/docs/nation/">Nation</a></li>
+	<li><a href="/docs/type/">Type</a></li>
+</ul>
+
+<h2>Subscribe to RSS feeds: </h2>
+
+<ul>
+	<li><a href="/docs/feeds/latest/">10 Most Recently Posted Stories</a></li>
+	<li><a href="/docs/feeds/bylines/">15 Newest Bylines</a></li>
+	<li><a href="/docs/feeds/sources/">10 Newest Sources</a></li>
+	<li>Topics, Bylines and Sources have their own feeds which are available on individual pages.</li>
+
+</ul>
+
+<h2><a href="http://www.thescoop.org/docs/about/">More about this site</a></h2>
+
+{% endblock %}

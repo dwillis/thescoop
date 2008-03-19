@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Byline Search Results for {{term}}</h2>
+
+{% if search_results %}
+<h4>The following bylines contained your search term</h4>
+    <ul>
+    {% for byline in search_results %}
+     <li><a href="{{ byline.get_absolute_url }}">{{ byline }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <p>Search again or <a href="../">return to the main page</a>.</p>
+<form method='post' action='http://www.thescoop.org/docs/search/byline/'>
+<input type='text' name='term' size='25' value=''>
+</form>    <br/><br/>
+    
+    
+{% else %}
+    <p>Sorry, no results for that name. Search again or <a href="../">return to the main page</a>.</p>
+<form method='post' action='http://www.thescoop.org/docs/search/byline/'>
+<input type='text' name='term' size='25' value=''>
+</form>    <br/><br/>
+{% endif %}
+
+{% endblock %}

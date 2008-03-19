@@ -1,0 +1,17 @@
+{% extends "databrowse/base.html" %}
+
+{% block title %}{{ model.verbose_name_plural|capfirst }} with {{ field.field.verbose_name }} in {{ year }}{% endblock %}
+
+{% block content %}
+
+<div id="breadcrumbs"><a href="/databrowse/">Home</a> / <a href="{{ model.url }}">{{ model.verbose_name_plural|capfirst }}</a> / <a href="../">{{ field.field.verbose_name|capfirst }} calendar</a> / {{ year }}</div>
+
+<h1>{{ model.verbose_name_plural|capfirst }} with {{ field.field.verbose_name }} in {{ year }}</h1>
+
+<ul>
+{% for month in month_list %}
+<li><a href="{{ month|date:"M"|lower }}/">{{ month|date:"F" }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if all_types %}
+
+<a href="/docs/">Home</a> -> Type
+
+<h3>All Source Types</h3>
+
+   <ul>
+        {% for type in all_types %}
+            <li><a href="{{type.get_absolute_url}}">{{ type.typename }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No types are available.</p>
+    {% endif %}
+
+{% endblock %}

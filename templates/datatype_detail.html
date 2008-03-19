@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if story_list %}
+
+<a href="/docs/">Home</a> -> <a href="/docs/datatype/">Data Types</a> -> {{ name }}
+
+<h3>Stories using {{ name }}</h3>
+
+   <ul>
+        {% for story in story_list %}
+            <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url}}">{{ story.source }}</a>), <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a>, posted on {{ story.postdate|date:"F d, Y" }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stories with this data type are available.</p>
+    {% endif %}
+
+{% endblock %}

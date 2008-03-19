@@ -1,0 +1,28 @@
+{% extends "byline_base.html" %}
+
+{% block content %}
+
+
+{% if object_list %}
+
+<a href="/docs/">Home</a> -> Bylines
+
+<h3>Browse All {{ hits }} Bylines</h3>
+
+<h5>Or use the search box at the top to find bylines</h5>
+
+   <ul>
+   {% for byline in object_list %}
+   <li><a href="{{ byline.get_absolute_url }}">{{ byline }}</a></li>
+   {% endfor %}
+
+{% if has_next %}
+   <a href="/docs/byline/?page={{ next }}">next page</a>
+{% else %}
+    {% endif %}
+        </ul>
+    {% else %}
+        <p>No recent bylines are available.</p>
+    {% endif %}
+
+{% endblock %}

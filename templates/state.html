@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if state_list %}
+
+<a href="/docs/">Home</a> -> State
+
+<h3>All States</h3>
+
+   <ul>
+        {% for state in state_list %}
+            <li><a href="{{state.get_absolute_url}}">{{ state.statename }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stories from this source are available.</p>
+    {% endif %}
+
+{% endblock %}

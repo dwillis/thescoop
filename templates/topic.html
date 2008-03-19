@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if all_topics %}
+
+<a href="/docs/">Home</a> -> Topics
+
+<h3>All Story Topics</h3>
+
+   <ul>
+        {% for topic in all_topics %}
+            <li><a href="{{topic.get_absolute_url}}">{{ topic.topicname }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No topics are available.</p>
+    {% endif %}
+
+{% endblock %}

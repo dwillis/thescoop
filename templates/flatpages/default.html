@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+
+<link rel="alternate" type="application/rss+xml" title="RSS feed" href="/docs/feeds/latest/" />
+
+{% endblock %}
+
+{% block content %}
+{{ flatpage.content }}
+
+{% endblock %}

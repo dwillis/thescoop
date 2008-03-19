@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if date_list %}
+    <ul>
+    {% for month in date_list %}
+        <li>
+        <a href="{{month|date:"M"|lower}}/">{{month.date|date:"N Y"}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Check back shortly - we're updating the database.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if object_list %}
+
+<h3>Stories from {{ day|date:"F d, Y"}}</h3>
+    <ul>
+    {% for story in object_list %}
+        <li>
+        <a href="{{ story.get_absolute_url }}">{{ story.headline }}</a>, <a href="{{ story.source.get_absolute_url}}">{{ story.source }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Check back shortly - we're updating the database.</p>
+{% endif %}
+<a href="../">(back to monthly archive)</a><br />
+
+{% endblock %}

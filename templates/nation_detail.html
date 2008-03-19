@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if nation_list %}
+
+<a href="/docs/">Home</a> -> <a href="/docs/nation/">Nations</a> -> {{ nation }}
+
+<h3>All Sources from {{ nation }}</h3>
+
+   <ul>
+        {% for source in nation_list %}
+            <li><a href="{{source.get_absolute_url}}">{{ source.name }}</a>, a <a href="{{source.type.get_absolute_url}}">{{source.type}}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No sources from this state are available.</p>
+    {% endif %}
+
+{% endblock %}

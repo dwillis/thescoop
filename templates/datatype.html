@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if all_datatypes %}
+
+<a href="/docs/">Home</a> -> Data Types
+
+<h3>All Story Data Types</h3>
+
+   <ul>
+        {% for datatype in all_datatypes %}
+            <li><a href="{{ datatype.get_absolute_url}}">{{ datatype }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No data types are available.</p>
+    {% endif %}
+
+{% endblock %}

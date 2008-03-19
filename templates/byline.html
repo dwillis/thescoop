@@ -1,0 +1,23 @@
+{% extends "byline_base.html" %}
+
+{% block content %}
+
+
+{% if recent_bylines %}
+
+<a href="/docs/">Home</a> -> Bylines
+
+<h3>15 Most Recent Bylines</h3>
+
+<h5>Use the search box at the top to find bylines</h5>
+
+   <ul>
+        {% for byline in recent_bylines %}
+            <li><a href="{{byline.get_absolute_url}}">{{ byline }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recent bylines are available.</p>
+    {% endif %}
+
+{% endblock %}

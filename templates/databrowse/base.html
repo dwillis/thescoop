@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<style type="text/css">
+body { margin:0; padding:0; font-size:12px; font-family:"Lucida Grande","Bitstream Vera Sans",Verdana,Arial,sans-serif; color:#333; background:#fff; }
+#header { background: #960; padding: 10px; color: #fff; font: bold 14px "Lucida Grande","Bitstream Vera Sans",Verdana,Arial,sans-serif; }
+#header a, #header a:link, #header a:visited { color: #ffc; text-decoration: none; }
+#content { padding: 10px; }
+h1 { font: bold 18px arial,sans-serif; }
+body#homepage .modelgroup h2 { font: bold 16px arial,sans-serif; margin: 0; padding: 0 0 3px; }
+body#homepage .modelgroup p { font: 11px verdana,sans-serif; margin: 0; padding: 0 0 10px; }
+body#homepage .modelgroup p a:link, body#homepage .modelgroup p a:visited { color: #999; }
+body#homepage .modelgroup p a:hover { color: #c90; }
+p,li { font: 12px verdana,sans-serif; }
+a:link, a:visited { color: #960; text-decoration: underline; }
+a:hover { color: #c90; }
+
+/* TABLES */
+table { border-collapse:collapse; border-color:#ccc; }
+td, th { font-size:11px; line-height:13px; border-bottom:1px solid #eee; vertical-align:top; padding:5px; font-family:"Lucida Grande", Verdana, Arial, sans-serif; }
+th { text-align:left; font-size:12px; font-weight:bold; }
+thead th,
+thead th:first-child,
+thead th.optional { font-weight:normal !important; }
+.row1 { background:#ffc; }
+.row2 { background:#fff; }
+
+/* BREADCRUMBS */
+#breadcrumbs { padding:2px 8px 3px 0; font-size:11px;  color:#999; }
+
+</style>
+</head>
+<body id="{% block bodyid %}page{% endblock %}">
+<div id="header"><a href="/databrowse/">Databrowse</a></div>
+<div id="content">
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>

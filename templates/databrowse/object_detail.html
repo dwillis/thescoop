@@ -1,0 +1,72 @@
+{% extends "databrowse/base.html" %}
+
+{% block title %}{{ object.model.verbose_name|capfirst }}: {{ object }}{% endblock %}
+
+{% block content %}
+
+<div id="breadcrumbs"><a href="/databrowse/">Home</a> / <a href="{{ object.model.url }}">{{ object.model.verbose_name_plural|capfirst }}</a> / {{ object }}</div>
+
+<h1>{{ object.model.verbose_name|capfirst }}: {{ object }}</h1>
+
+<table>
+{% for field in object.fields %}
+<tr class="{% cycle row1,row2 %}">
+<th>{{ field.field.verbose_name|capfirst }}</th>
+<td>
+{% if field.urls %}
+{% for urlvalue in field.urls %}
+{% if urlvalue.1 %}<a href="{{ urlvalue.1 }}">{% endif %}{{ urlvalue.0 }}{% if urlvalue.1 %}</a>{% endif %}{% if not forloop.last %}, {% endif %}
+{% endfor %}
+{% else %}None{% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+{% comment %}
+{% for related_object in object.related_objects %}
+  <h2>Appears in "{{ related_object.related_field }}" in the following {{ related_object.model.verbose_name_plural }}:</h2>
+  {% if related_object.object_list %}
+  <ul>
+    {% for object in related_object.object_list %}
+    <li><a href="{{ object.url }}">{{ object }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>(None)</p>
+  {% endif %}
+{% endfor %}
+{% endcomment %}
+
+{% for related_object in object.related_objects %}
+  <h2>Appears in "{{ related_object.related_field }}" in the following {{ related_object.model.verbose_name_plural }}:</h2>
+  {% if related_object.object_list %}
+  <table>
+  <tr>
+  {% for field in related_object.model.fields %}
+  <th>{{ field.field.verbose_name|capfirst }}</th>
+  {% endfor %}
+  </tr>
+  {% for object in related_object.object_list %}
+    <tr class="{% cycle row1,row2 %}">
+    {% for field in object.fields %}
+
+<td>
+{% if field.urls %}
+{% for urlvalue in field.urls %}
+{% if urlvalue.1 %}<a href="{{ urlvalue.1 }}">{% endif %}{{ urlvalue.0 }}{% if urlvalue.1 %}</a>{% endif %}{% if not forloop.last %}, {% endif %}
+{% endfor %}
+{% else %}None{% endif %}
+</td>
+
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+  {% else %}
+  <p>(None)</p>
+  {% endif %}
+{% endfor %}
+
+{% endblock %}
+

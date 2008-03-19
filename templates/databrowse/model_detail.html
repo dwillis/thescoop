@@ -1,0 +1,25 @@
+{% extends "databrowse/base.html" %}
+
+{% block title %}{{ model.verbose_name_plural|capfirst }}{% endblock %}
+
+{% block content %}
+
+<div id="breadcrumbs"><a href="/databrowse/">Home</a> / {{ model.verbose_name_plural|capfirst }}</div>
+
+<h1>{{ model.verbose_name_plural|capfirst }}</h1>
+
+{% if model.browsable_fields %}
+<p class="filter"><strong>Browse by:</strong> {% for field in model.browsable_fields %}<a href="{{ field.url }}">{{ field.field.verbose_name|capfirst }}</a>{% if not forloop.last %} / {% endif %}{% endfor %}
+{% endif %}
+
+{% if model.date_fields %}
+<p class="filter"><strong>View calendar by:</strong> {% for field in model.date_fields %}<a href="{{ field.calendar_url }}">{{ field.field.verbose_name|capfirst }}</a>{% if not forloop.last %} / {% endif %}{% endfor %}</p>
+{% endif %}
+
+<ul>
+{% for object in model.objects %}
+<li><a href="{{ object.url }}">{{ object }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

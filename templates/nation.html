@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if nation_list %}
+
+<a href="/docs/">Home</a> -> Nations
+
+<h3>All Nations</h3>
+
+   <ul>
+        {% for nation in nation_list %}
+            <li><a href="{{nation.get_absolute_url}}">{{ nation.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stories from this nation are available.</p>
+    {% endif %}
+
+{% endblock %}

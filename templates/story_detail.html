@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if story%}
+<h3>Details about this story</h3>
+
+   <ul>
+            <li>Source: <a href="{{story.source.get_absolute_url}}">{{ story.source}}</a></li>
+	     <li>Date: <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a></li>
+	     <li>URL: <a href="{{story.url}}">Read the story</a></li>
+{% if bylines %}
+		<li>Bylines:
+        {% for byline in bylines %}
+	     <a href="{{ byline.get_absolute_url}}">{{ byline }}</a> {% if not forloop.last %} , {% endif %}
+        {% endfor %}
+		</li>
+
+    {% else %}
+        <p>No bylines from this story are available.</p>
+    {% endif %}
+
+{% if topics %}
+		<li>Topics:
+        {% for topic in topics %}
+	     <a href="{{ topic.get_absolute_url}}">{{ topic }}</a> {% if not forloop.last %} , {% endif %}
+        {% endfor %}
+		</li>
+
+    {% else %}
+        <p>No topics for this story are available.</p>
+    {% endif %}
+
+{% if datatypes %}
+		<li>Data Types:
+        {% for datatype in datatypes %}
+	     <a href="{{ datatype.get_absolute_url}}">{{ datatype }}</a> {% if not forloop.last %} , {% endif %}
+        {% endfor %}
+		</li>
+
+    {% else %}
+        <p>No data types for this story are available.</p>
+    {% endif %}
+
+	<li><b>Description/Excerpt:</b> {{ story.description }}</li>
+
+{% if story.methodology %}
+
+	<li>Methodology: <a href="{{story.methodology}}">See explainer</a></li>
+
+{% else %}
+{% endif %}
+
+{% if story.dburl %}
+
+	<li>Database or Graphic: <a href="{{story.dburl}}">Go to site</a> ({{ story.file_type }})</li>
+
+{% else %}
+{% endif %}
+
+
+        </ul>
+    {% else %}
+        <p>No details from this story are available.</p>
+    {% endif %}
+
+{% endblock %}

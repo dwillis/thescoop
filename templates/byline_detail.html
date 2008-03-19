@@ -1,0 +1,26 @@
+{% extends "byline_base.html" %}
+
+{% block extrahead %}
+
+<link rel="alternate" type="application/rss+xml" title="RSS feed" href="/docs/feeds/byline/{{ nameslug }}/" />
+
+{% endblock %}
+
+{% block content %}
+
+{% if story_list %}
+
+<a href="/docs/">Home</a> -> <a href="/docs/byline/">Bylines</a> -> {{ name }}
+
+<h3>Stories by {{ name }} (<a href="/docs/feeds/byline/{{ nameslug }}/">get an RSS feed for this byline</a>)</h3>
+
+   <ul>
+        {% for story in story_list %}
+            <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url}}">{{ story.source }}</a>), <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a>, posted on {{ story.postdate|date:"F d, Y" }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stories with this byline are available.</p>
+    {% endif %}
+
+{% endblock %}

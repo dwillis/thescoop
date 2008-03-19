@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if db_stories %}
+
+<a href="/docs/">Home</a> -> Stories with Data or Graphics
+
+<h3>25 Most Recent Stories with Online Databases or Graphics</h3>
+
+   <ul>
+        {% for story in db_stories %}
+            <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url }}">{{ story.source }}</a>) published on <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recent stories are available.</p>
+    {% endif %}
+
+{% endblock %}

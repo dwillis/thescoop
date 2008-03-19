@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if object_list %}
+    <ul>
+    {% for day in object_list %}
+        {% ifchanged %}<li>
+       <a href="{{ day.pubdate|date:"d"}}/">{{day.pubdate|date:"l, N j, Y"}}</a>        </li>{% endifchanged %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Check back shortly - we're updating the database.</p>
+{% endif %}
+
+{% endblock %}
