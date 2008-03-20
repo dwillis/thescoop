@@ -1,5 +1,5 @@
 from django.contrib.syndication.feeds import Feed
-from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, Topic, Type
+from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, Topic, Type, Database, Application
 
 class LatestEntries(Feed):
 	title = "The Scoop DOCS Recent Stories Feed"
@@ -8,6 +8,14 @@ class LatestEntries(Feed):
 
 	def items(self):
 		return Story.objects.select_related().order_by('-postdate')[:10]
+
+class LatestDatabases(Feed):
+	title = "The Scoop Recent Databases Feed"
+	link = "/dbs/"
+	description = "Most recent databases posted"
+
+	def items(self):
+	    return Database.objects.select_related().all().order_by('-post_date')[:10]
 
 class LatestBylines(Feed):
 	title = "The Scoop DOCS Recent Bylines Feed"

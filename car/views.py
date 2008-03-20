@@ -1,5 +1,5 @@
-from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, Topic, Type
-from django.shortcuts import render_to_response, get_object_or_404
+from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, Topic, Type, Application, Database
+from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.syndication.feeds import Feed
 
@@ -125,5 +125,20 @@ def blog_feed(request):
 	return HttpResponseRedirect('http://blog.thescoop.org/feed/')
 
 def blog_main(request):
-        return HttpResponseRedirect('http://blog.thescoop.org/')
+    return HttpResponseRedirect('http://blog.thescoop.org/')
 
+def db_index(request):
+    recent_dbs = Database.objects.all().order_by('-post_date')[:5]
+    app_types = Applications.objects.all().order_by('name')
+    return render_to_response('db_index.html', {'recent_dbs': recent_dbs, 'app_types': app_types})
+
+def db_detail(request, slug):
+    db = get_object_or_404(Database, slug=slug)
+    credits = db.credit.all()
+    topics = db.topic.all()
+    return render_to_response('db_detail.html', {'database': db, 'credits': credits, 'topics': topics })
+
+def db_app(request, appslug):
+    app = get_object_or_404(Application, slug=appslug)
+    db_list = get_list_or_404(Database, application=app).order_by('-post_date')
+    return render_to_response('db_app.html', {'app': app, 'db_list': db_list })

@@ -110,3 +110,36 @@ class Story(models.Model):
 		return self.dburl.split('.')[-1]
 	class Meta:
 		verbose_name_plural='Stories'
+
+class Application(models.Model):
+    name = = models.CharField(max_length=90)
+    slug = models.SlugField(prepopulate_from=('name',))
+    
+    class Admin:
+        pass
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return "/dbs/app/%s/" % self.slug
+
+class Database(models.Model):
+    post_date = models.DateField(blank=True)
+    source = models.ForeignKey(Source)
+    url = models.URLField()
+    title = models.CharField(max_length=90)
+    slug = models.SlugField(prepopulate_from=('title',))
+    credit = models.ManyToManyField(Byline, filter_interface=models.VERTICAL, blank=True)
+    topic = models.ManyToManyField(Topic, null=True)
+    application = models.ForeignKey(Application)
+    description = models.TextField()
+    
+    class Admin:
+        pass
+    
+    def __str__(self):
+        return self.title
+    
+    def get_absolute_url(self):
+        return "/dbs/%s/" % self.slug

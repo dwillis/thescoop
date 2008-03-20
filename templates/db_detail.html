@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if story%}
+<h3>Details about this database</h3>
+
+   <ul>
+            <li>Source: <a href="{{database.source.get_absolute_url}}">{{ database.source}}</a></li>
+	     <li>URL: <a href="{{database.url}}">Read the story</a></li>
+{% if bylines %}
+		<li>Credits:
+        {% for credit in credits %}
+	     <a href="{{ credit.get_absolute_url}}">{{ credit }}</a> {% if not forloop.last %} , {% endif %}
+        {% endfor %}
+		</li>
+
+    {% else %}
+        <p>No credit from this database are available.</p>
+    {% endif %}
+
+{% if topics %}
+		<li>Topics:
+        {% for topic in topics %}
+	     <a href="{{ topic.get_absolute_url}}">{{ topic }}</a> {% if not forloop.last %} , {% endif %}
+        {% endfor %}
+		</li>
+
+    {% else %}
+        <p>No topics for this database are available.</p>
+    {% endif %}
+
+	<li><b>Description/Excerpt:</b> {{ database.description }}</li>
+
+        </ul>
+    {% else %}
+        <p>No details from this database are available.</p>
+    {% endif %}
+
+{% endblock %}

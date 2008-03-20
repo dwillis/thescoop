@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+
+<link rel="alternate" type="application/rss+xml" title="RSS feed" href="/docs/feeds/latest/" />
+
+{% endblock %}
+
+{% block content %}
+
+<h2>Recently Added Databases</h2>
+
+{% if recent_dbs %}
+   <ul>
+        {% for db in recent_dbs %}
+            <li><a href="{{ db.get_absolute_url }}">{{ db.title }}</a> (<a href="{{ db.source.get_absolute_url }}">{{ db.source }}</a>)</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recent stories are available.</p>
+    {% endif %}
+
+<h2>Browse by Application: </h2>
+
+{% if app_types %}
+<ul>
+    {% for app in app_types %}
+    <li><a href="{{ app.get_absolute_url }}">{{ app.name }}</a></li>
+</ul>
+{% else %}
+    <p>No application types are available.</p>
+{% endif %}
+
+<h2>Subscribe to RSS feeds: </h2>
+
+<ul>
+	<li><a href="/docs/feeds/dbs/">10 Most Recently Posted Databases</a></li>
+</ul>
+
+<h2><a href="http://www.thescoop.org/docs/about/">More about this site</a></h2>
+
+{% endblock %}

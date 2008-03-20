@@ -58,6 +58,10 @@ urlpatterns = patterns('',
     (r'^docs/source/$', 'thescoop.car.views.source_main'),
     (r'^docs/source/(.*)/(\d+)/$', 'thescoop.car.views.source_by_year'),
     (r'^docs/source/(.*)/$', 'thescoop.car.views.source'),
+    (r'^dbs/$', 'thescoop.car.views.db_index'),
+    (r'^dbs/app/(?P<appslug>.*)/$', 'thescoop.car.views.db_app'),
+    (r'^dbs/(.*)/$', 'thescoop.car.views.db_detail'),
+
 
 
     (r'^docs/date/$', 'django.views.generic.date_based.archive_index', dict(info_dict, template_name='story_archive_index.html')),
