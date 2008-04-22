@@ -6,6 +6,17 @@
 
 <a href="/docs/">Home</a> -> <a href="/docs/state/">State</a> -> {{ state }}
 
+<h3>Recent Stories from {{ state }}</h3>
+
+   <ul>
+        {% for story in story_list %}
+            <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url}}">{{ story.source }}</a>), <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a>, posted on {{ story.postdate|date:"F d, Y" }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recent stories from {{ state }} are available.</p>
+    {% endif %}
+
 <h3>All Sources from {{ state }}</h3>
 
    <ul>

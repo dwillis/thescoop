@@ -27,7 +27,8 @@ def state(request):
 def state_detail(request, state):
     try:
 	    state_list = Source.objects.filter(state__abbrev__exact=state).order_by('name')
-	    return render_to_response('state_detail.html', {'state_list': state_list, 'state': state_list[0].state.statename})
+	    story_list = Story.objects.select_related().filter(source__state__abbrev__exact=state).order_by('-pubdate')
+	    return render_to_response('state_detail.html', {'state_list': state_list, 'state': state_list[0].state.statename, 'story_list': story_list[:10]})
     except IndexError:
         raise Http404
 
