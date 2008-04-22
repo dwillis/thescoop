@@ -7,10 +7,10 @@
 <a href="/docs/">Home</a> -> <a href="/docs/state/">State</a> -> {{ state }}
 
 <h3>Recent Stories from {{ state.statename }}</h3>
-
-   <ul>
-        {% for story in story_list %}
-            <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url}}">{{ story.source }}</a>), <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a>, posted on {{ story.postdate|date:"F d, Y" }}</li>
+    {% if story_list %}
+    <ul>
+    {% for story in story_list %}
+        <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url}}">{{ story.source }}</a>), <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a>, posted on {{ story.postdate|date:"F d, Y" }}</li>
         {% endfor %}
         </ul>
     {% else %}
