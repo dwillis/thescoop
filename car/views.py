@@ -26,9 +26,9 @@ def state(request):
 
 def state_detail(request, state):
     s = get_object_or_404(State, abbrev=state.upper())        
-    state_list = Source.objects.filter(state__abbrev__exact=state).order_by('name')
-    story_list = Story.objects.select_related().filter(source__state=s).order_by('-pubdate')
-    return render_to_response('state_detail.html', {'state_list': state_list, 'state': state_list[0].state.statename, 'story_list': story_list[:10]})
+    state_list = Source.objects.filter(state=s).order_by('name')
+    story_list = Story.objects.select_related().filter(source__state=s).order_by('-pubdate')[:10]
+    return render_to_response('state_detail.html', {'state_list': state_list, 'state': s, 'story_list': story_list})
 
 def source_main(request):
 	source_list = Source.objects.extra(select={'source_count': 'SELECT COUNT(*) FROM car_story WHERE car_story.source_id=car_source.id HAVING COUNT(*)>0'},).order_by('name')

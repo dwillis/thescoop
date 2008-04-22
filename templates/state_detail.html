@@ -6,7 +6,7 @@
 
 <a href="/docs/">Home</a> -> <a href="/docs/state/">State</a> -> {{ state }}
 
-<h3>Recent Stories from {{ state }}</h3>
+<h3>Recent Stories from {{ state.statename }}</h3>
 
    <ul>
         {% for story in story_list %}
@@ -14,10 +14,10 @@
         {% endfor %}
         </ul>
     {% else %}
-        <p>No recent stories from {{ state }} are available.</p>
+        <p>No recent stories from {{ state.statename }} are available.</p>
     {% endif %}
 
-<h3>All Sources from {{ state }}</h3>
+<h3>All Sources from {{ state.statename }}</h3>
 
    <ul>
         {% for source in state_list %}
