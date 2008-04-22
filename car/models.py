@@ -112,7 +112,7 @@ class Story(models.Model):
 		verbose_name_plural='Stories'
 
 class Application(models.Model):
-    name = = models.CharField(max_length=90)
+    name = models.CharField(max_length=90)
     slug = models.SlugField(prepopulate_from=('name',))
     
     class Admin:
