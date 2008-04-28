@@ -5,7 +5,9 @@ from django.contrib.syndication.feeds import Feed
 
 def main(request):
 	recent_stories = Story.objects.all().order_by('-postdate')[:5]
-	return render_to_response('index.html', {'recent_stories': recent_stories})
+	count = Story.objects.all().count()
+	last_update = Story.objects.all().order_by('-postdate')[0]
+	return render_to_response('index.html', {'recent_stories': recent_stories, 'count': count, 'last_update': last_update})
 
 def with_db(request):
 	db_stories = Story.objects.filter(dburl__istartswith='http').order_by('-postdate')[:25]
