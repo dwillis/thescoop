@@ -32,9 +32,7 @@ feeds = {
 
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^thescoop/', include('thescoop.apps.foo.urls.foo')),
-
+    # Redirects to deal with blog.thescoop.org subdomain:
     (r'^feed/$', 'thescoop.car.views.blog_feed'),
     (r'^$', 'thescoop.car.views.blog_main'),
 
