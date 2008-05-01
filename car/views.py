@@ -114,6 +114,10 @@ def story_detail(request, storyslug):
 	datatypes = story.datatype.all()
 	return render_to_response('story_detail.html', {'story': story, 'bylines': bylines, 'topics': topics, 'datatypes': datatypes})
 
+def search(request):
+	search_results = Story.objects.select_related().filter(description__icontains=request.POST['term']).order_by('-pubdate')
+	return render_to_response('search.html',{'search_results':search_results, 'term':request.POST['term']})    
+
 def byline_search(request):
 	search_results = Byline.objects.select_related().filter(lastname__icontains=request.POST['term']).order_by('lastname')
 	return render_to_response('byline_search.html',{'search_results':search_results, 'term':request.POST['term']})
