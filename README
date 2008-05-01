@@ -1,1 +1,7 @@
 This is the code for the Django apps on thescoop.org, including the Database of CAR Stories and a long-planned but undeveloped blog app.
+
+=== TO-DO  ===
+
+* Use links from WP blog for base templates (re-work Link model in blog app to point to that table).
+* Add Everyblock-style bar graphs for yearly story counts to source_detail pages.
+* Add story counts to topic index, source list in state detail pages, 

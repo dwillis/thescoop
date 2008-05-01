@@ -4,13 +4,13 @@
 
 {% if state_list %}
 
-<a href="/docs/">Home</a> -> <a href="/docs/state/">State</a> -> {{ state }}
+<a href="/docs/">Home</a> -> <a href="/docs/state/">State</a> -> {{ state.statename }}
 
 <h3>Recent Stories from {{ state.statename }}</h3>
     {% if story_list %}
     <ul>
     {% for story in story_list %}
-        <li><a href="{{story.get_absolute_url}}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url}}">{{ story.source }}</a>), <a href="/docs/{{ story.pubdate|date:"Y"}}/{{story.pubdate|date:"M"|lower}}/{{story.pubdate|date:"d"}}/">{{ story.pubdate|date:"F d, Y" }}</a>, posted on {{ story.postdate|date:"F d, Y" }}</li>
+        <li><a href="{{ story.get_absolute_url }}">{{ story.headline }}</a> (<a href="{{ story.source.get_absolute_url }}">{{ story.source }}</a>), <a href="/docs/{{ story.pubdate|date:"Y" }}/{{ story.pubdate|date:"M"|lower }}/{{ story.pubdate|date:"d" }}/">{{ story.pubdate|date:"F d, Y" }}</a>, posted on {{ story.postdate|date:"F d, Y" }}</li>
         {% endfor %}
         </ul>
     {% else %}
@@ -21,7 +21,7 @@
 
    <ul>
         {% for source in state_list %}
-            <li><a href="{{source.get_absolute_url}}">{{ source.name }}</a>, a <a href="{{source.type.get_absolute_url}}">{{source.type}}</a></li>
+            <li><a href="{{ source.get_absolute_url }}">{{ source.name }}</a>, a <a href="{{ source.type.get_absolute_url }}">{{ source.type }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
