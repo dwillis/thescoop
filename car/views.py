@@ -43,7 +43,7 @@ def source(request, sourceslug):
         year_list = source_list.dates('pubdate', 'year')[::-1]
         byline_list = []
         for story in source_list:
-            for byline in story.byline.all().order_by('car_byline.lastname'):
+            for byline in story.byline.all().order_by('lastname'):
                 if byline in byline_list:
                     pass
                 else:
