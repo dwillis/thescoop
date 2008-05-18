@@ -26,7 +26,7 @@ class Project(models.Model):
         pass
     
     def get_absolute_url(self):
-        return "/projects/%s/" % self.slug
+        return "/code/%s/" % self.slug
 
 class Update(models.Model):
     project = models.ForeignKey(Project)

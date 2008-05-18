@@ -7,7 +7,8 @@ import datetime
 
 def index(request):
     project_list = Project.objects.all().select_related().order_by('title')
-    return render_to_response('projects/index.html', {'project_list': project_list})
+    recent_updates = Update.objects.all().order_by('-date')[:5]
+    return render_to_response('projects/index.html', {'project_list': project_list, 'recent_updates': recent_updates})
 
 def language_list(request, lang):
     language = get_object_or_404(Language, slug=lang)

@@ -4,10 +4,23 @@
 
 {% if project_list %}
 
-<a href="/code/">Home</a>
+<a href="/projects/">Projects</a>
 
 <h3>Code</h3>
 
+{% if recent_updates %}
+
+<h5>Recent Updates</h5>
+
+<ul>
+    {% for update in recent_updates %}
+    <li><a href="{{ update.project.get_absolute_url }}">{{ update.project.title }}</a>: {{ update.title }}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+<h5>All Projects</h5>
 
    <ul>
         {% for project in project_list %}
