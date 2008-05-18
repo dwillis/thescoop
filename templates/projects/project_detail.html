@@ -1,0 +1,38 @@
+{% extends "projects/projects_base.html" %}
+
+{% block content %}
+
+<a href="/projects">Home</a> -> {{ project.title }}
+
+<h3>{{ project.title }}</h3>
+
+<p>Language: {{ project.language.name }}</p>
+<p><a href="{{ project.repository_url }}">View Repository</a></p>
+
+{% if updates %}
+
+<h4>Latest Updates</h4>
+
+{% for update in updates %}
+
+<p>{{ update.date|date:"F d, Y" }} - {{ update.title }}</p>
+
+<p>{{ update.description }}</p>
+
+{% endfor %}
+{% endif %}
+
+{% if feed %}
+
+<h4>Commits</h4>
+
+<ul>
+{% for item in feed.entries %}
+
+  <li>{{ item.date|date:"F d, Y" }}: {{ item.title }}</li>
+
+{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

@@ -14,13 +14,14 @@ ENTRY_CHOICES = (
 )
 
 class Link(models.Model):
-	url = models.URLField()
-	title = models.CharField(max_length=90)
-	category = models.CharField(max_length=1, choices=LINK_CATEGORIES)
-	def __str__(self):
-		return self.title
-	class Admin:
-		list_display = ('title', 'url', 'category')
+    id = models.IntegerField(db_column="link_id", primary_key=True)
+    url = models.URLField(db_column="link_url")
+    title = models.CharField(db_column="link_name", max_length=90)
+    category = models.IntegerField(max_length=1, choices=LINK_CATEGORIES)
+    def __str__(self):
+        return self.title
+    class Admin:
+        list_display = ('title', 'url', 'category')
 
 class Category(models.Model):
 	def __str__(self):

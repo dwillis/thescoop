@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 from django.views.generic import list_detail, date_based, create_update
 from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, Topic, Type
 from thescoop.blog.models import Link, Category, Post
+from thescoop.projects.models import Language, Project, Update
 from thescoop.feeds import LatestEntries, LatestBylines, LatestSources, TopicFeed, SourceFeed, BylineFeed
 
 info_dict = {
@@ -60,6 +61,10 @@ urlpatterns = patterns('',
     (r'^dbs/$', 'thescoop.car.views.db_index'),
     (r'^dbs/app/(?P<appslug>.*)/$', 'thescoop.car.views.db_app'),
     (r'^dbs/(.*)/$', 'thescoop.car.views.db_detail'),
+    (r'^code/$', 'thescoop.projects.views.index'),
+    (r'^code/language/(?P<lang>[-a-z]+)/$', 'thescoop.projects.views.language_list'),
+    (r'^code/(?P<project>[-a-z]+)/$', 'thescoop.projects.views.project_detail'),
+    (r'^presentations/$', 'thescoop.projects.views.presentations'),
 
 
 
