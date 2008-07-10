@@ -1,19 +1,15 @@
 from django.db import models
 
-
 class Language(models.Model):
     name = models.CharField(max_length=90)
-    slug = models.SlugField(prepopulate_from=('name',))
+    slug = models.SlugField()
     
     def __unicode__(self):
         return self.name
-    
-    class Admin:
-        pass
 
 class Project(models.Model):
     title = models.CharField(max_length=90)
-    slug = models.SlugField(prepopulate_from=('title',))
+    slug = models.SlugField()
     language = models.ForeignKey(Language)
     repository_url = models.CharField(max_length=120, blank=True)
     description = models.TextField(blank=True)
@@ -21,9 +17,6 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.title
-    
-    class Admin:
-        pass
     
     def get_absolute_url(self):
         return "/code/%s/" % self.slug
@@ -37,32 +30,23 @@ class Update(models.Model):
     def __unicode__(self):
         return self.title
 
-    class Admin:
-        pass
-
 class Organization(models.Model):
     name = models.CharField(max_length=150)
-    slug = models.SlugField(prepopulate_from=('name',))
+    slug = models.SlugField()
     
     def __unicode__(self):
         return self.name
-    
-    class Admin:
-        pass
 
 class Topic(models.Model):
     name = models.CharField(max_length=150)
-    slug = models.SlugField(prepopulate_from=('name',))
+    slug = models.SlugField()
     
     def __unicode__(self):
         return self.name
-    
-    class Admin:
-        pass
 
 class Presentation(models.Model):
     title = models.CharField(max_length=255)
-    slug = models.SlugField(prepopulate_from=("title",))
+    slug = models.SlugField()
     organization = models.ForeignKey(Organization)
     topic = models.ForeignKey(Topic)
     date = models.DateField()
@@ -71,6 +55,3 @@ class Presentation(models.Model):
 
     def __unicode__(self):
         return self.title
-    
-    class Admin:
-        pass

@@ -1,18 +1,13 @@
 from django.conf.urls.defaults import *
 from django.views.generic import list_detail, date_based, create_update
-from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, Topic, Type
-from thescoop.blog.models import Link, Category, Post
-from thescoop.projects.models import Language, Project, Update
+from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, Topic, Type, Database, Application
+from thescoop.projects.models import Language, Project, Update, Presentation, Topic
 from thescoop.feeds import LatestEntries, LatestBylines, LatestSources, TopicFeed, SourceFeed, BylineFeed
+from django.contrib import admin
 
 info_dict = {
     'queryset': Story.objects.all().order_by('-pubdate'),
     'date_field':'pubdate',
-}
-
-post_dict = {
-    'queryset': Post.objects.exclude(category__exact=22).order_by('-post_date'),
-    'date_field':'post_date',
 }
 
 byline_list_info = {
@@ -76,5 +71,5 @@ urlpatterns = patterns('',
     (r'^docs/feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
 
     # Uncomment this for admin:
-    (r'^admin/', include('django.contrib.admin.urls')),
+    (r'^admin/(.*)', admin.site.root),
 )
