@@ -1,16 +1,16 @@
 from django.contrib import admin
 from thescoop.projects.models import Language, Project, Update, Presentation
 
-class LanguageOptions(models.ModelAdmin):
+class LanguageOptions(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
 
-class ProjectOptions(models.ModelAdmin):
+class ProjectOptions(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('title',)}
 
-class OrganizationOptions(models.ModelAdmin):
+class OrganizationOptions(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
 
-class TopicOptions(models.ModelAdmin):
+class TopicOptions(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
 
 admin.site.register(Language, LanguageOptions)
