@@ -33,6 +33,9 @@ class TopicOptions(admin.ModelAdmin):
 class ApplicationOptions(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
 
+class PresentationOptions(admin.ModelAdmin):
+    prepopulated_fields = {'slug' : ('title',)}
+
 class DatabaseOptions(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('title',)}
     filter_vertical = ('credit',)

@@ -16,5 +16,5 @@ class TopicOptions(admin.ModelAdmin):
 admin.site.register(Language, LanguageOptions)
 admin.site.register(Project, ProjectOptions)
 admin.site.register(Update)
-admin.site.register(Presentation, PresentationOptions)
+admin.site.register(Presentation)
 admin.site.register(Topic, TopicOptions)
