@@ -1,1 +1,1 @@
-import car.admin
+import thescoop.car.admin
