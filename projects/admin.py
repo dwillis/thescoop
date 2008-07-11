@@ -1,5 +1,5 @@
 from django.contrib import admin
-from thescoop.projects.models import Language, Project, Update, Presentation
+from thescoop.projects.models import Language, Project, Update, Presentation, Topic
 
 class LanguageOptions(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
