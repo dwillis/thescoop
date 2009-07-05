@@ -23,4 +23,11 @@
         <p>No stories with this byline are available.</p>
     {% endif %}
 
+<h3>News Organizations</h3>
+
+  <ul>
+    { for source in source_list %}
+    <li><a href="{{ source.get_absolute_url }}">{{ source.name }}</a> ( {{ source.stories }} stor{{ source.stories|pluralize:"y,ies"}}))</li>
+  </ul>
+
 {% endblock %}

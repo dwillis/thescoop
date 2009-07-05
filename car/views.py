@@ -20,8 +20,9 @@ def byline_main(request):
 
 def byline_detail(request, byslug):
 	story_list = Story.objects.select_related().filter(byline__nameslug__exact=byslug).order_by('-pubdate')
-	byline_name = Byline.objects.get(nameslug__exact=byslug)
-	return render_to_response('byline_detail.html', {'story_list': story_list, 'name': byline_name, 'nameslug': byslug})
+	byline_name = get_object_or_404(Byline, nameslug__exact=byslug)
+	source_list = Source.objects.filter(story__byline__nameslug=byslug).annotate(stories=Count('id')).order_by('-stories')
+	return render_to_response('byline_detail.html', {'story_list': story_list, 'name': byline_name, 'nameslug': byslug, 'source_list': source_list})
 
 def state(request):
 	state_list = State.objects.all().order_by('statename')
