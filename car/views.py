@@ -2,6 +2,7 @@ from thescoop.car.models import Byline, Datatype, Nation, Source, State, Story, 
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.syndication.feeds import Feed
+from django.db.models import Avg, Max, Min, Count
 
 def main(request):
 	recent_stories = Story.objects.all().order_by('-postdate')[:5]
@@ -33,7 +34,7 @@ def state_detail(request, state):
     return render_to_response('state_detail.html', {'state_list': state_list, 'state': s, 'story_list': story_list})
 
 def source_main(request):
-	source_list = Source.objects.extra(select={'source_count': 'SELECT COUNT(*) FROM car_story WHERE car_story.source_id=car_source.id HAVING COUNT(*)>0'},).order_by('name')
+    source_list = Source.objects.annotate(num_stories=Count('story'))
 	return render_to_response('source_main.html', {'source_list': source_list})
 
 def source(request, sourceslug):

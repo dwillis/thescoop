@@ -10,7 +10,7 @@ class Nation(models.Model):
         return "/docs/nation/%s/" % self.nameslug
 
 class State(models.Model):
-    abbrev = models.USStateField()
+    abbrev = models.CharField(max_length=2)
     statename = models.CharField(max_length=50)
 
     def __unicode__(self):

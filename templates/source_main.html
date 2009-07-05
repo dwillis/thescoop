@@ -12,7 +12,7 @@
 
    <ul>
         {% for source in source_list %}
-            <li><a href="{{source.get_absolute_url}}">{{ source.name }}</a> ({{ source.source_count }}), a <a href="{{source.type.get_absolute_url}}">{{source.type}}</a> located in {% ifequal source.nation.name "USA" %} <a href="{{source.state.get_absolute_url}}">{{ source.state.statename }}</a> {% else %} <a href="{{source.nation.get_absolute_url}}">{{ source.nation }}</a> {% endifequal %}</li>
+            <li><a href="{{source.get_absolute_url}}">{{ source.name }}</a> ({{ source.num_stories }}), a <a href="{{source.type.get_absolute_url}}">{{source.type}}</a> located in {% ifequal source.nation.name "USA" %} <a href="{{source.state.get_absolute_url}}">{{ source.state.statename }}</a> {% else %} <a href="{{source.nation.get_absolute_url}}">{{ source.nation }}</a> {% endifequal %}</li>
         {% endfor %}
         </ul>
     {% else %}
