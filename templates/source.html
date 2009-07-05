@@ -50,7 +50,7 @@
 <h3>{{ source.name }} Bylines</h3>
 <ul>
     {% for byline in byline_list %}
-       <li><a href="{{ byline.get_absolute_url }}">{{ byline }}</a> ({{ byline.stories }} stor{{ byline.stories|pluralize:"y,ies"}}))</li>
+       <li><a href="{{ byline.get_absolute_url }}">{{ byline }}</a> ({{ byline.stories }} stor{{ byline.stories|pluralize:"y,ies"}})</li>
      {% endfor %}
        </ul>
     {% else %}
