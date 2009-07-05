@@ -27,7 +27,7 @@
 
   <ul>
     {% for source in source_list %}
-    <li><a href="{{ source.get_absolute_url }}">{{ source.name }}</a> ( {{ source.stories }} stor{{ source.stories|pluralize:"y,ies"}}))</li>
+    <li><a href="{{ source.get_absolute_url }}">{{ source.name }}</a> ( {{ source.stories }} stor{{ source.stories|pluralize:"y,ies"}})</li>
     {% endfor %}
   </ul>
 
