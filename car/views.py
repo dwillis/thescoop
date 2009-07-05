@@ -35,7 +35,7 @@ def state_detail(request, state):
 
 def source_main(request):
     source_list = Source.objects.annotate(num_stories=Count('story'))
-	return render_to_response('source_main.html', {'source_list': source_list})
+    return render_to_response('source_main.html', {'source_list': source_list})
 
 def source(request, sourceslug):
     try:
