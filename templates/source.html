@@ -38,7 +38,7 @@
 <h3>{{ source.name }} Topics</h3>
 <ul>
     {% for topic in topic_list %}
-       <li><a href="{{ topic.get_absolute_url }}">{{ topic }}</a></li>
+       <li><a href="{{ topic.get_absolute_url }}">{{ topic }}</a> ({{ topic.stories }} stories)</li>
      {% endfor %}
        </ul>
     {% else %}
@@ -50,7 +50,7 @@
 <h3>{{ source.name }} Bylines</h3>
 <ul>
     {% for byline in byline_list %}
-       <li><a href="{{ byline.get_absolute_url }}">{{ byline }}</a></li>
+       <li><a href="{{ byline.get_absolute_url }}">{{ byline }}</a> ({{ byline.stories }} stories)</li>
      {% endfor %}
        </ul>
     {% else %}

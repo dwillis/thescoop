@@ -42,22 +42,8 @@ def source(request, sourceslug):
         source = get_object_or_404(Source, sourceslug=sourceslug)
         source_list = Story.objects.select_related().filter(source=source).order_by('-pubdate')
         year_list = source_list.dates('pubdate', 'year')[::-1]
-        byline_list = []
-        for story in source_list:
-            for byline in story.byline.all().order_by('lastname'):
-                if byline in byline_list:
-                    pass
-                else:
-                    byline_list.append(byline)
-        byline_list.sort()
-        topic_list = []
-        for story in source_list:
-            for topic in story.topic.all():
-                if topic in topic_list:
-                    pass
-                else:
-                    topic_list.append(topic)
-        topic_list.sort()
+        byline_list = Byline.objects.filter(story__source=source).annotate(stories=Count('id')).order_by('-stories')
+        topic_list = Topic.objects.filter(story__source=source).annotate(stories=Count('id')).order_by('-stories')
         return render_to_response('source.html', {'source_list': source_list, 'year_list': year_list, 'source':source, 'sourceslug': sourceslug, 'story_num': len(source_list), 'byline_list': byline_list, 'topic_list': topic_list})
     except IndexError:
         raise Http404
