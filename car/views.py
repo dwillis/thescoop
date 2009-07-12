@@ -52,7 +52,7 @@ def source_all(request, sourceslug):
     year_list = source_list.dates('pubdate', 'year')[::-1]
     byline_list = Byline.objects.filter(story__source=source).annotate(stories=Count('id')).order_by('-stories')
     topic_list = Topic.objects.filter(story__source=source).annotate(stories=Count('id')).order_by('-stories')
-    return render_to_response('source.html', {'source_list': source_list, 'year_list': year_list, 'source':source, 'sourceslug': sourceslug, 'story_num': len(source_list), 'byline_list': byline_list, 'topic_list': topic_list})
+    return render_to_response('source.html', {'source_list': source_list, 'year_list': year_list, 'source':source, 'sourceslug': sourceslug, 'story_num': len(source_list), 'byline_list': byline_list, 'topic_list': topic_list, 'all':True})
 
 def source_by_year(request, sourceslug, year):
 	source_list = Story.objects.select_related().filter(source__sourceslug__exact=sourceslug, pubdate__year=year).order_by('-pubdate')
