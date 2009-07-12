@@ -13,7 +13,7 @@
 <a href="/docs/">Home</a> -> <a href="/docs/source/">Source</a> -> {% if all %}<a href="{{ source.get_absolute_url }}">{{ source.name }}</a> -> All Stories{% else %}{{ source.name }}{% endif %}
 
 
-<h3>{% if all %}All{% else %}10 Most Recent{% endif %} Stories from the {{ source.name }}, a <a href="{{source.type.get_absolute_url}}">{{source.type}}</a> located in <a href="{{ source.state.get_absolute_url }}">{{ source.state.statename }}</a>, {{ source.nation }} (DOCS contains {{ story_num }} entries for this source; <a href="/docs/feeds/source/{{ sourceslug }}/">get an RSS feed for this source</a>)</h3>
+<h3>{% if all %}All{% else %}10 Most Recent{% endif %} Stories from the {{ source.name }}{% if not all %}(<a href="all/">See all stories</a>){% endif %}, a <a href="{{source.type.get_absolute_url}}">{{source.type}}</a> located in <a href="{{ source.state.get_absolute_url }}">{{ source.state.statename }}</a>, {{ source.nation }} (DOCS contains {{ story_num }} entries for this source; <a href="/docs/feeds/source/{{ sourceslug }}/">get an RSS feed for this source</a>)</h3>
 
    <ul>
         {% for story in source_list %}
