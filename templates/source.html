@@ -10,7 +10,7 @@
 
 {% if source_list %}
 
-<a href="/docs/">Home</a> -> <a href="/docs/source/">Source</a> -> {{ source.name }}{% if all %} -> All Stories{% endif %}
+<a href="/docs/">Home</a> -> <a href="/docs/source/">Source</a> -> {% if all %}<a href="{{ source.get_absolute_url }}">{{ source.name }}</a> -> All Stories{% else %}{{ source.name }}{% endif %}
 
 
 <h3>{% if all %}All{% else %}10 Most Recent{% endif %} Stories from the {{ source.name }}, a <a href="{{source.type.get_absolute_url}}">{{source.type}}</a> located in <a href="{{ source.state.get_absolute_url }}">{{ source.state.statename }}</a>, {{ source.nation }} (DOCS contains {{ story_num }} entries for this source; <a href="/docs/feeds/source/{{ sourceslug }}/">get an RSS feed for this source</a>)</h3>
