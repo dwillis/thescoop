@@ -35,7 +35,7 @@ def state_detail(request, state):
     return render_to_response('state_detail.html', {'state_list': state_list, 'state': s, 'story_list': story_list})
 
 def source_main(request):
-    source_list = Source.objects.annotate(num_stories=Count('story'))
+    source_list = Source.objects.annotate(num_stories=Count('story')).order_by('name')
     return render_to_response('source_main.html', {'source_list': source_list})
 
 def source(request, sourceslug):
